@@ -89,17 +89,22 @@ func (o *baseObject) debyte() {
 func PoliciesFromAnnotations(annotations map[string]string) policy.Set {
 	set := policy.Set{}
 	for k, v := range annotations {
-		if strings.HasPrefix(k, PolicyPrefix) {
-			p := strings.TrimPrefix(k, PolicyPrefix)
-			if v == "true" {
-				set = set.Add(policy.Policy(p))
-			} else {
-				set = set.Set(policy.Policy(p), v)
-			}
+		var p string
+		switch {
+		case strings.HasPrefix(k, PolicyPrefix):
+			p = strings.TrimPrefix(k, PolicyPrefix)
+		case strings.HasPrefix(k, FilterPolicyPrefix):
+			p = strings.TrimPrefix(k, FilterPolicyPrefix)
+			set = set.Set(policy.TagPrefix(p), v)
+			continue
+		default:
+			continue
 		}
-		if strings.HasPrefix(k, FilterPolicyPrefix) {
-			container := strings.TrimPrefix(k, FilterPolicyPrefix)
-			set = set.Set(policy.TagPrefix(container), v)
+
+		if v == "true" {
+			set = set.Add(policy.Policy(p))
+		} else {
+			set = set.Set(policy.Policy(p), v)
 		}
 	}
 	return set
