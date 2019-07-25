@@ -1,6 +1,44 @@
 This is the changelog for the Flux daemon; the changelog for the Helm
 operator is in [./CHANGELOG-helmop.md](./CHANGELOG-helmop.md).
 
+## 1.13.3 (2019-07-25)
+
+This is a patch release, mostly concerned with adapting documentation
+to Flux's new home in https://github.com/fluxcd/ and the [CNCF
+sandbox](https://www.cncf.io/sandbox-projects/).
+
+### Fixes
+
+- Correct the name of the `--registry-require` argument mentioned in a
+  log message [fluxcd/flux#2256][]
+- Parse Docker credentials that have a host and port, but not a scheme
+  [fluxcd/flux#2248][]
+
+### Maintenance and documentation
+
+- Change references to weaveworks/flux to fluxcd/flux
+  [fluxcd/flux#2240][], [fluxcd/flux#2244][], [fluxcd/flux#2257][],
+  [fluxcd/flux#2271][]
+- Add Walmart to production users (:tada:!) [fluxcd/flux#2268][]
+- Mention the multi-tenancy tutorial in the README
+  [fluxcd/flux#2286][]
+- Fix the filename given in the `.flux.yaml` (manifest generation)
+  docs [fluxcd/flux#2270][]
+- Run credentials tests in parallel, without sleeping
+  [fluxcd/flux#2254][]
+- Correct the Prometheus annotations given in examples
+  [fluxcd/flux#2278][]
+
+### Thanks
+
+Thanks to the following for contributions since the last release:
+@2opremio, @aaron-trout, @adusumillipraveen, @alexhumphreys,
+@aliartiza75, @ariep, @binjheBenjamin, @bricef, @caniszczyk,
+@carlosjgp, @carlpett, @chriscorn-takt, @cloudoutloud, @derrickburns,
+@dholbach, @fnmeissner, @gled4er, @hiddeco, @jmtrusona, @jowparks,
+@jpellizzari, @ksaritek, @ktsakalozos, @mar1n3r0, @mzachh, @primeroz,
+@squaremo, @stefanprodan, @sureshamk, @vyckou, @ybaruchel, @zoni.
+
 ## 1.13.2 (2019-07-10)
 
 This is a patch release, including a fix for [problems with using image
